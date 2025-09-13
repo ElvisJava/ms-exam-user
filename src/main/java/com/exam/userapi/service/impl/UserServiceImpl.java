@@ -13,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.time.OffsetDateTime;
 import java.util.UUID;
 import java.util.regex.Pattern;
 
@@ -35,7 +36,7 @@ public class UserServiceImpl implements UserService {
 
         userRepository.findByEmail(req.getEmail()).ifPresent(u -> { throw
                 new EmailAlreadyRegisteredException(); });
-
+        var now = OffsetDateTime.now();
         userRepository.save(UserEntity.builder()
                 .id(UUID.randomUUID().toString())
                 .name(req.getName())
@@ -47,6 +48,10 @@ public class UserServiceImpl implements UserService {
                         .countrycode(p.getCountrycode())
                         .build()).toList())
                 .isActive(true)
+                .created(now)
+                .modified(now)
+                .lastLogin(now)
+                .token("tok")
                 .build());
 
         UserResponse response = UserResponse.builder()
