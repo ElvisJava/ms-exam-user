@@ -12,7 +12,7 @@ package com.exam.userapi.exception;
 public class EmailAlreadyRegisteredException  extends RuntimeException {
     private static final long serialVersionUID = 1L;
     public EmailAlreadyRegisteredException() {
-        super("El correo ya registrado");
+        super("El correo ya esta registrado");
     }
     public EmailAlreadyRegisteredException(String message) {
         super(message);

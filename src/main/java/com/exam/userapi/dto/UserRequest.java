@@ -15,8 +15,8 @@ public class UserRequest {
     private String name;
 
 
-    @Email(message = "El correo no es válido")
-    @NotBlank(message = "El correo es obligatorio")
+    @Email(message = "Correo con formato invalido")
+    @NotBlank(message = "El correo no debe ser vacio")
     @Pattern(
             regexp = "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}$",
             message = "El correo debe tener un formato válido, ej: aaaaa@zzzz.com"
