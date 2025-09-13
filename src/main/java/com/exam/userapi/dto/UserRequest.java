@@ -1,5 +1,7 @@
 package com.exam.userapi.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.*;
 import lombok.*;
 
@@ -12,9 +14,10 @@ import java.util.List;
 @AllArgsConstructor
 public class UserRequest {
     @NotBlank(message = "El nombre es obligatorio")
+    @Schema(description = "Nombre completo del usuario", example = "Jose ELvis Ayay Davila")
     private String name;
 
-
+    @Schema(description = "Correo electrónico válido", example = "elvisad30@gmail.com")
     @Email(message = "Correo con formato invalido")
     @NotBlank(message = "El correo no debe ser vacio")
     @Pattern(

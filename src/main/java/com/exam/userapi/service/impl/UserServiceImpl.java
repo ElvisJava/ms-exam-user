@@ -6,6 +6,7 @@ import com.exam.userapi.entity.PhoneEntity;
 import com.exam.userapi.entity.UserEntity;
 import com.exam.userapi.exception.EmailAlreadyRegisteredException;
 import com.exam.userapi.repository.UserRepository;
+import com.exam.userapi.security.JwtUtil;
 import com.exam.userapi.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,9 +24,11 @@ public class UserServiceImpl implements UserService {
             LoggerFactory.getLogger(UserServiceImpl.class);
 
     private final UserRepository userRepository;
+    private final JwtUtil jwtUtil;
 
-    public UserServiceImpl(UserRepository userRepository) {
+    public UserServiceImpl(UserRepository userRepository, JwtUtil jwtUtil) {
         this.userRepository = userRepository;
+        this.jwtUtil = jwtUtil;
     }
 
 
@@ -37,6 +40,8 @@ public class UserServiceImpl implements UserService {
         userRepository.findByEmail(req.getEmail()).ifPresent(u -> { throw
                 new EmailAlreadyRegisteredException(); });
         var now = OffsetDateTime.now();
+        String token = jwtUtil.generateToken(req.getEmail(), UUID.randomUUID().toString());
+        log.info("token: " + token);
         userRepository.save(UserEntity.builder()
                 .id(UUID.randomUUID().toString())
                 .name(req.getName())
@@ -51,7 +56,7 @@ public class UserServiceImpl implements UserService {
                 .created(now)
                 .modified(now)
                 .lastLogin(now)
-                .token("tok")
+                .token(token)
                 .build());
 
         UserResponse response = UserResponse.builder()

@@ -15,7 +15,7 @@ public class ApiExceptionHandler {
     public ResponseEntity<Map<String,String>>
     handleEmailExists(EmailAlreadyRegisteredException ex) {
         return
-                ResponseEntity.status(HttpStatus.CONFLICT).body(Map.of("mensaje", "El correo ya registrado" ));
+                ResponseEntity.status(HttpStatus.CONFLICT).body(Map.of("mensaje", "El correo ya esta registrado" ));
     }
 
     @ExceptionHandler(IllegalArgumentException.class)
