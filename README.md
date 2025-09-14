@@ -62,7 +62,7 @@ curl --location --request POST 'http://localhost:8080/api/exam/register/user' \
 
 ## 6. Diagrama de Solucion
 
-![Flujo de la solución](Diagrama Solucion.JPG)
+![Flujo de la solución](DiagramaSolucion.JPG)
 
 
 ---
