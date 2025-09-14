@@ -42,7 +42,7 @@ public class UserServiceImpl implements UserService {
         var now = OffsetDateTime.now();
         String token = jwtUtil.generateToken(req.getEmail(), UUID.randomUUID().toString());
         log.info("token: " + token);
-        userRepository.save(UserEntity.builder()
+        UserEntity savedUser = userRepository.save(UserEntity.builder()
                 .id(UUID.randomUUID().toString())
                 .name(req.getName())
                 .email(req.getEmail())
@@ -60,8 +60,13 @@ public class UserServiceImpl implements UserService {
                 .build());
 
         UserResponse response = UserResponse.builder()
-                .message("Usuario creado exitosamente")
-                .code(0)
+                .id(savedUser.getId())
+                .name(savedUser.getName())
+                .created(savedUser.getCreated())
+                .modified(savedUser.getModified())
+                .lastLogin(savedUser.getLastLogin())
+                .token(savedUser.getToken())
+                .isActive(savedUser.isActive())
                 .build();
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }

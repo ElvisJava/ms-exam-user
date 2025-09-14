@@ -2,6 +2,8 @@ package com.exam.userapi.dto;
 
 import lombok.*;
 
+import java.time.OffsetDateTime;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -9,6 +11,11 @@ import lombok.*;
 @AllArgsConstructor
 public class UserResponse {
 
-    private String message;
-    private Integer code;
+    private String id;
+    private String name;
+    private OffsetDateTime created;
+    private OffsetDateTime modified;
+    private OffsetDateTime lastLogin;
+    private String token;
+    private boolean isActive;
 }
