@@ -24,7 +24,7 @@ Incluye registro de usuarios, validación de correo único, manejo de teléfonos
 
 ## 📂 Estructura del proyecto
 
-![Flujo de la solución](docs/EstructuraProyecto.JPG)
+![Flujo de la solución](EstructuraProyecto.JPG)
 
 
 # 1. Compilar el proyecto
@@ -62,7 +62,8 @@ curl --location --request POST 'http://localhost:8080/api/exam/register/user' \
 
 ## 6. Diagrama de Solucion
 
-![Flujo de la solución](docs/Diagrama Solucion.JPG)
+![Flujo de la solución](Diagrama Solucion.JPG)
+
 
 ---
 ⚠️ **OBS:** Cambie `app.jwt.secret` en `application.properties` antes de producción.
